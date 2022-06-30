@@ -15,11 +15,13 @@
         android:layout_height="150dp"
         android:src="@drawable/splash"
         android:background="#fece2f"
+        android:transitionName="logo_image"
         />
     <TextView
         android:id="@+id/logo_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:transitionName="logo_text"
         android:text="Hello there, Welcome back."
         android:textSize="40sp"
         android:fontFamily="@font/ebike_font"
@@ -41,6 +43,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/email"
+        app:counterEnabled="true"
+        app:counterMaxLength="30"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:hint="Email"
         >
