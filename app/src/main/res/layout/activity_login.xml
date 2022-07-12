@@ -13,8 +13,8 @@
         android:id="@+id/logo_image"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:src="@drawable/splash"
-        android:background="#fece2f"
+        android:src="@drawable/elogo"
+        android:background="#fff"
         android:transitionName="logo_image"
         />
     <TextView

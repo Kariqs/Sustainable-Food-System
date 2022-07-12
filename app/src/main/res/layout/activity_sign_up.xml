@@ -9,12 +9,14 @@
     android:background="#fff"
     android:padding="20dp">
    <ImageView
+       android:id="@+id/logo_image"
        android:transitionName="logo_image"
        android:layout_width="150dp"
        android:layout_height="150dp"
-       android:src="@drawable/splash"
-       android:background="#fece2f"/>
+       android:src="@drawable/elogo"
+       android:background="#fff"/>
     <TextView
+        android:id="@+id/tv1Signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="WELCOME"
@@ -26,7 +28,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign Up to start your riding journey."
+        android:id="@+id/tv2SignUp"
+        android:transitionName="logo_text"
+        android:text="Sign Up to start."
         android:fontFamily="@font/ebike_font2"
         android:textSize="18sp"
         android:textColor="@color/black"/>
@@ -43,6 +47,7 @@
             android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:id="@+id/name"
+            android:transitionName="logo_text"
             android:hint="Full Name"
             >
             <com.google.android.material.textfield.TextInputEditText
@@ -54,6 +59,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:transitionName="logo_text"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:id="@+id/username"
             android:hint="Username"
@@ -67,6 +73,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:transitionName="logo_text"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:id="@+id/email"
             android:hint="Email"
@@ -80,6 +87,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:transitionName="logo_text"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:id="@+id/phonenumber"
             android:hint="Phone Number"
@@ -93,6 +101,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:transitionName="logo_text"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:id="@+id/password"
             android:hint="Password"
@@ -108,6 +117,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:transitionName="logo_text"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:id="@+id/confirmpassword"
             android:hint="Confirm Password"
@@ -124,8 +134,10 @@
     </LinearLayout>
     <Button
         android:layout_width="match_parent"
+        android:id="@+id/register"
         android:layout_height="50dp"
         android:text="GO"
+        android:transitionName="logo_text"
         android:textColor="#fff"
         android:fontFamily="@font/ebike_font2"
         android:background="@color/black"
@@ -133,9 +145,11 @@
 
     <Button
         android:layout_marginTop="5dp"
+        android:id="@+id/haveAccount"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#00000000"
+        android:transitionName="logo_text"
         android:text="Already have an account? LogIn."
         android:fontFamily="@font/ebike_font2"
         android:textColor="#000"/>

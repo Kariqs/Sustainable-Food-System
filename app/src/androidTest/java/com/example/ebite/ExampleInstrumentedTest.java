@@ -1,4 +1,4 @@
-package com.example.ebike;
+package com.example.ebite;
 
 import android.content.Context;
 
