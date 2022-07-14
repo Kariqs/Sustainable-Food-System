@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "907204317314",
+    "project_id": "sustainable-food-system",
+    "storage_bucket": "sustainable-food-system.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:907204317314:android:124e20af41183e1a55a49b",
+        "android_client_info": {
+          "package_name": "com.example.ebite"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "907204317314-kt0lumla21rk1cu4m6t4qlb1i2at272n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDL6a2Aih30L_6O2Oew58w7LJ4ogNRpnv4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "907204317314-kt0lumla21rk1cu4m6t4qlb1i2at272n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
