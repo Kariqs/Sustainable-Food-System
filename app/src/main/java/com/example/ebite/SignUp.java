@@ -47,8 +47,6 @@ public class SignUp extends AppCompatActivity {
             rootNode = FirebaseDatabase.getInstance();
             reference = rootNode.getReference("users");
 
-            //Get Values entered by the user
-            if (password.getEditText().getText().toString().equals(confirmPassword.getEditText().getText().toString())){
                 String NAME = name.getEditText().getText().toString();
                 String USERNAME = username.getEditText().getText().toString();
                 String EMAIL = email.getEditText().getText().toString();
@@ -56,10 +54,15 @@ public class SignUp extends AppCompatActivity {
                 String PASSWORD = password.getEditText().getText().toString();
                 String CONFIRMPASSWORD = confirmPassword.getEditText().getText().toString();
 
+            //Get Values entered by the user
+            if (!password.getEditText().getText().toString().equals(confirmPassword.getEditText().getText().toString())){
+                Toast.makeText(SignUp.this, "Passwords do not match!", Toast.LENGTH_SHORT).show();
+            }else if (NAME.isEmpty()||USERNAME.isEmpty()||EMAIL.isEmpty()||PHONENUMBER.isEmpty()||PASSWORD.isEmpty()||CONFIRMPASSWORD.isEmpty()){
+                Toast.makeText(SignUp.this, "Please fill in all the fields", Toast.LENGTH_SHORT).show();
+            }
+            else {
                 DBHelperClass dbHelperClass = new DBHelperClass(NAME,USERNAME,EMAIL,PHONENUMBER,PASSWORD,CONFIRMPASSWORD);
                 reference.child(PHONENUMBER).setValue(dbHelperClass);
-            } else {
-                Toast.makeText(SignUp.this, "Please confirm your password to proceed", Toast.LENGTH_SHORT).show();
             }
 
 
