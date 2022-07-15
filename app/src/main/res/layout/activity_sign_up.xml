@@ -132,16 +132,17 @@
         </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
+
     <Button
-        android:layout_width="match_parent"
         android:id="@+id/register"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="GO"
-        android:transitionName="logo_text"
-        android:textColor="#fff"
-        android:fontFamily="@font/ebike_font2"
+        android:layout_marginTop="5dp"
         android:background="@color/black"
-        android:layout_marginTop="5dp"/>
+        android:fontFamily="@font/ebike_font2"
+        android:text="GO"
+        android:textColor="#fff"
+        android:transitionName="logo_text" />
 
     <Button
         android:layout_marginTop="5dp"

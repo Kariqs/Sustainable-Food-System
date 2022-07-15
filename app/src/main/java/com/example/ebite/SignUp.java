@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -47,6 +48,9 @@ public class SignUp extends AppCompatActivity {
             rootNode = FirebaseDatabase.getInstance();
             reference = rootNode.getReference("users");
 
+
+
+
                 String NAME = name.getEditText().getText().toString();
                 String USERNAME = username.getEditText().getText().toString();
                 String EMAIL = email.getEditText().getText().toString();
@@ -54,11 +58,14 @@ public class SignUp extends AppCompatActivity {
                 String PASSWORD = password.getEditText().getText().toString();
                 String CONFIRMPASSWORD = confirmPassword.getEditText().getText().toString();
 
+
+
+
             //Get Values entered by the user
             if (!password.getEditText().getText().toString().equals(confirmPassword.getEditText().getText().toString())){
                 Toast.makeText(SignUp.this, "Passwords do not match!", Toast.LENGTH_SHORT).show();
-            }else if (NAME.isEmpty()||USERNAME.isEmpty()||EMAIL.isEmpty()||PHONENUMBER.isEmpty()||PASSWORD.isEmpty()||CONFIRMPASSWORD.isEmpty()){
-                Toast.makeText(SignUp.this, "Please fill in all the fields", Toast.LENGTH_SHORT).show();
+            }else if (!validateName()){
+               return;
             }
             else {
                 DBHelperClass dbHelperClass = new DBHelperClass(NAME,USERNAME,EMAIL,PHONENUMBER,PASSWORD,CONFIRMPASSWORD);
@@ -78,5 +85,66 @@ public class SignUp extends AppCompatActivity {
             }
         });
 
+    }
+
+    private Boolean validateName(){
+        String val = name.getEditText().getText().toString();
+        if (val.isEmpty()){
+            name.setError("Field cannot be empty.");
+            return false;
+        }else{
+            name.setError(null);
+            name.setErrorEnabled(false);
+            return true;
+        }
+    }
+    private Boolean validateUserName(){
+        String val = username.getEditText().getText().toString();
+        String noWhiteSpace = "(?=\\S+$)";
+        if (val.isEmpty()){
+            username.setError("Field cannot be empty.");
+            return false;
+        }else if (val.length()>=15){
+            username.setError("Username is too long.");
+            return false;
+        } else if (!val.matches(noWhiteSpace)){
+            username.setError("White spaces not allowed.");
+            return false;
+        } else{
+            username.setError(null);
+            name.setErrorEnabled(false);
+            return true;
+        }
+    }
+    private Boolean validateEmail(){
+        String val = email.getEditText().getText().toString();
+        String emailFormat = "\t^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$ ";
+        if (val.isEmpty()){
+            email.setError("Field cannot be empty.");
+            return false;
+        }else{
+            email.setError(null);
+            return true;
+        }
+    }
+    private Boolean validatePhoneNumber(){
+        String val = username.getEditText().getText().toString();
+        if (val.isEmpty()){
+            username.setError("Field cannot be empty.");
+            return false;
+        }else{
+            username.setError(null);
+            return true;
+        }
+    }
+    private Boolean validatePassword(){
+        String val = username.getEditText().getText().toString();
+        if (val.isEmpty()){
+            username.setError("Field cannot be empty.");
+            return false;
+        }else{
+            username.setError(null);
+            return true;
+        }
     }
 }
