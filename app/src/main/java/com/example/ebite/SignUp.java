@@ -64,7 +64,7 @@ public class SignUp extends AppCompatActivity {
             //Get Values entered by the user
             if (!password.getEditText().getText().toString().equals(confirmPassword.getEditText().getText().toString())){
                 Toast.makeText(SignUp.this, "Passwords do not match!", Toast.LENGTH_SHORT).show();
-            }else if (!validateName()){
+            }else if (!validateName() | !validateUserName()|!validateEmail()){
                return;
             }
             else {
@@ -100,15 +100,11 @@ public class SignUp extends AppCompatActivity {
     }
     private Boolean validateUserName(){
         String val = username.getEditText().getText().toString();
-        String noWhiteSpace = "(?=\\S+$)";
         if (val.isEmpty()){
             username.setError("Field cannot be empty.");
             return false;
         }else if (val.length()>=15){
             username.setError("Username is too long.");
-            return false;
-        } else if (!val.matches(noWhiteSpace)){
-            username.setError("White spaces not allowed.");
             return false;
         } else{
             username.setError(null);
@@ -118,12 +114,12 @@ public class SignUp extends AppCompatActivity {
     }
     private Boolean validateEmail(){
         String val = email.getEditText().getText().toString();
-        String emailFormat = "\t^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$ ";
         if (val.isEmpty()){
             email.setError("Field cannot be empty.");
             return false;
-        }else{
+        } else {
             email.setError(null);
+            email.setErrorEnabled(false);
             return true;
         }
     }
