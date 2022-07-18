@@ -45,31 +45,16 @@ public class SignUp extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            rootNode = FirebaseDatabase.getInstance();
-            reference = rootNode.getReference("users");
-
-
-
-
-                String NAME = name.getEditText().getText().toString();
-                String USERNAME = username.getEditText().getText().toString();
-                String EMAIL = email.getEditText().getText().toString();
-                String PHONENUMBER = phonenumber.getEditText().getText().toString();
-                String PASSWORD = password.getEditText().getText().toString();
-                String CONFIRMPASSWORD = confirmPassword.getEditText().getText().toString();
-
-
-
-
             //Get Values entered by the user
             if (!password.getEditText().getText().toString().equals(confirmPassword.getEditText().getText().toString())){
                 Toast.makeText(SignUp.this, "Passwords do not match!", Toast.LENGTH_SHORT).show();
-            }else if (!validateName() | !validateUserName()|!validateEmail()){
+            }else if (!validateName() | !validateUserName()|!validateEmail() | !validatePhoneNumber()|!validatePassword()|!validateConfirmPassword()){
                return;
             }
             else {
-                DBHelperClass dbHelperClass = new DBHelperClass(NAME,USERNAME,EMAIL,PHONENUMBER,PASSWORD,CONFIRMPASSWORD);
-                reference.child(PHONENUMBER).setValue(dbHelperClass);
+                registerUser();
+                clear();
+                Toast.makeText(SignUp.this, "Registration was successful.", Toast.LENGTH_SHORT).show();
             }
 
 
@@ -124,23 +109,60 @@ public class SignUp extends AppCompatActivity {
         }
     }
     private Boolean validatePhoneNumber(){
-        String val = username.getEditText().getText().toString();
+        String val = phonenumber.getEditText().getText().toString();
         if (val.isEmpty()){
-            username.setError("Field cannot be empty.");
+            phonenumber.setError("Field cannot be empty.");
             return false;
         }else{
             username.setError(null);
+            phonenumber.setErrorEnabled(false);
             return true;
         }
     }
     private Boolean validatePassword(){
-        String val = username.getEditText().getText().toString();
+        String val = password.getEditText().getText().toString();
         if (val.isEmpty()){
-            username.setError("Field cannot be empty.");
+            password.setError("Field cannot be empty.");
             return false;
         }else{
-            username.setError(null);
+            password.setError(null);
+            password.setErrorEnabled(false);
             return true;
         }
+    }
+    private Boolean validateConfirmPassword(){
+        String val = confirmPassword.getEditText().getText().toString();
+        if (val.isEmpty()){
+            confirmPassword.setError("Field cannot be empty.");
+            return false;
+        }else{
+            confirmPassword.setError(null);
+            confirmPassword.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    public void clear(){
+        name.getEditText().setText("");
+        username.getEditText().setText("");
+        email.getEditText().setText("");
+        phonenumber.getEditText().setText("");
+        password.getEditText().setText("");
+        confirmPassword.getEditText().setText("");
+    }
+
+    public void registerUser(){
+        rootNode = FirebaseDatabase.getInstance();
+        reference = rootNode.getReference("users");
+        String NAME = name.getEditText().getText().toString();
+        String USERNAME = username.getEditText().getText().toString();
+        String EMAIL = email.getEditText().getText().toString();
+        String PHONENUMBER = phonenumber.getEditText().getText().toString();
+        String PASSWORD = password.getEditText().getText().toString();
+        String CONFIRMPASSWORD = confirmPassword.getEditText().getText().toString();
+        DBHelperClass dbHelperClass = new DBHelperClass(NAME,USERNAME,EMAIL,PHONENUMBER,PASSWORD,CONFIRMPASSWORD);
+        reference.child(PHONENUMBER).setValue(dbHelperClass);
+
+
     }
 }
