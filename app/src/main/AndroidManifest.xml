@@ -14,13 +14,16 @@
         android:theme="@style/Theme.EBike"
         tools:targetApi="31">
         <activity
-            android:name="com.example.ebite.SignUp"
+            android:name=".Dashboard"
             android:exported="false" />
         <activity
-            android:name="com.example.ebite.Login"
+            android:name=".SignUp"
             android:exported="false" />
         <activity
-            android:name="com.example.ebite.MainActivity"
+            android:name=".Login"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
