@@ -4,99 +4,103 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login"
-    android:orientation="vertical"
     android:background="#fff"
-    android:padding="20dp">
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".Login">
 
     <ImageView
         android:id="@+id/logo_image"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:src="@drawable/elogo"
         android:background="#fff"
-        android:transitionName="logo_image"
-        />
+        android:src="@drawable/elogo"
+        android:transitionName="logo_image" />
+
     <TextView
         android:id="@+id/logo_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:transitionName="logo_text"
-        android:text="Hello there, Welcome back."
-        android:textSize="40sp"
         android:fontFamily="@font/ebike_font"
-        android:textColor="@color/black"/>
+        android:text="Hello there, Welcome back."
+        android:textColor="@color/black"
+        android:textSize="40sp"
+        android:transitionName="logo_text" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign In to continue."
-        android:textSize="20sp"
         android:fontFamily="@font/ebike_font2"
-        android:textColor="@color/black"/>
+        android:text="Sign In to continue."
+        android:textColor="@color/black"
+        android:textSize="20sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="10dp" />
+
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/phoneNo"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:hint="Phone number"
-        >
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/ebike_font2"/>
-    </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/password"
-        android:layout_marginTop="20dp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:hint="Password"
-        app:passwordToggleEnabled="true"
-        >
+        android:hint="Phone number">
+
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:fontFamily="@font/ebike_font2"/>
+            android:fontFamily="@font/ebike_font2" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/password"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Password"
+        app:passwordToggleEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ebike_font2"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
     <Button
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:text="FORGOT PASSWORD?"
-        android:background="#00000000"
-        android:textColor="@color/black"
         android:layout_margin="5dp"
-        android:fontFamily="@font/ebike_font2"/>
-    <Button
-        android:layout_width="match_parent"
-        android:id="@+id/login"
-        android:layout_height="wrap_content"
-        android:background="#000000"
-        android:text="GO"
+        android:background="#00000000"
         android:fontFamily="@font/ebike_font2"
-        android:textColor="#fff"
-        android:layout_marginTop="20dp"/>
+        android:text="FORGOT PASSWORD?"
+        android:textColor="@color/black" />
+
     <Button
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round_black_button"
+        android:fontFamily="@font/ebike_font2"
+        android:text="GO"
+        android:textColor="#fff" />
+
+    <Button
+        android:id="@+id/SignUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:text="New User? SIGN UP"
-        android:id="@+id/SignUp"
-        android:background="#00000000"
-        android:textColor="@color/black"
         android:layout_margin="5dp"
+        android:layout_marginTop="20dp"
+        android:background="#00000000"
         android:fontFamily="@font/ebike_font2"
-        android:layout_marginTop="20dp"/>
-
-
+        android:text="New User? SIGN UP"
+        android:textColor="@color/black" />
 
 
 </LinearLayout>
