@@ -38,7 +38,7 @@ public class Adapter extends RecyclerView.Adapter <Adapter.ImageViewHolder> {
         Picasso.with(context)
                 .load(upload.getImageUri())
                 .fit()
-                .centerCrop()
+                .centerInside()
                 .into(holder.ShowImage);
     }
 
