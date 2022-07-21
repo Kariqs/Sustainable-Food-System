@@ -2,7 +2,7 @@ package com.example.ebite;
 
 public class DBHelperClass {
 
-    String name,username,email,phonenumber,password,confirmPassword;
+    String name, username, email, phonenumber, password, confirmPassword;
 
     public DBHelperClass() {
     }

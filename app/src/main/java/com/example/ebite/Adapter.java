@@ -14,10 +14,10 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class Adapter extends RecyclerView.Adapter <Adapter.ImageViewHolder> {
+public class Adapter extends RecyclerView.Adapter<Adapter.ImageViewHolder> {
 
-   private Context context;
-   private List<Upload> list;
+    private Context context;
+    private List<Upload> list;
 
     public Adapter(Context context, List<Upload> list) {
         this.context = context;
@@ -27,16 +27,17 @@ public class Adapter extends RecyclerView.Adapter <Adapter.ImageViewHolder> {
     @NonNull
     @Override
     public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.show_uploads,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.show_uploads, parent, false);
         return new ImageViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
-      Upload upload = list.get(position);
-      holder.Description.setText(upload.getDescription());
+        Upload upload = list.get(position);
+        holder.Description.setText(upload.getDescription());
         Picasso.with(context)
                 .load(upload.getImageUri())
+                .placeholder(R.drawable.ebiteplaceholder)
                 .fit()
                 .centerInside()
                 .into(holder.ShowImage);
@@ -47,9 +48,10 @@ public class Adapter extends RecyclerView.Adapter <Adapter.ImageViewHolder> {
         return list.size();
     }
 
-    public class ImageViewHolder extends  RecyclerView.ViewHolder{
-          TextView Description;
-          ImageView ShowImage;
+    public class ImageViewHolder extends RecyclerView.ViewHolder {
+        TextView Description;
+        ImageView ShowImage;
+
         public ImageViewHolder(@NonNull View itemView) {
             super(itemView);
             Description = itemView.findViewById(R.id.description_view);

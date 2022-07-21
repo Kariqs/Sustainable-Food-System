@@ -30,7 +30,7 @@ public class Dashboard extends AppCompatActivity {
     Adapter adapter;
 
     DatabaseReference databaseReference;
-    List <Upload> list;
+    List<Upload> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,21 +48,21 @@ public class Dashboard extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-              for (DataSnapshot postSnapshot : snapshot.getChildren()){
-                  Upload upload = postSnapshot.getValue(Upload.class);
-                  list.add(upload);
-              }
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                    Upload upload = postSnapshot.getValue(Upload.class);
+                    list.add(upload);
+                }
 
-              adapter = new Adapter(Dashboard.this,list);
-              recyclerView.setAdapter(adapter);
+                adapter = new Adapter(Dashboard.this, list);
+                recyclerView.setAdapter(adapter);
 
-              progressBar.setVisibility(View.INVISIBLE);
+                progressBar.setVisibility(View.INVISIBLE);
 
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(Dashboard.this,error.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(Dashboard.this, error.getMessage(), Toast.LENGTH_SHORT).show();
                 progressBar.setVisibility(View.INVISIBLE);
             }
         });
@@ -71,7 +71,7 @@ public class Dashboard extends AppCompatActivity {
         Post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),Post.class);
+                Intent intent = new Intent(getApplicationContext(), Post.class);
                 startActivity(intent);
             }
         });

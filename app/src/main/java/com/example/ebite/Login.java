@@ -43,6 +43,7 @@ public class Login extends AppCompatActivity {
                     return;
                 } else {
                     isUser();
+                    clear();
                 }
             }
         });
@@ -116,5 +117,10 @@ public class Login extends AppCompatActivity {
                 Toast.makeText(Login.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void clear() {
+        Phone.getEditText().setText("");
+        password.getEditText().setText("");
     }
 }

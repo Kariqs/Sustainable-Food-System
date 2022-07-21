@@ -18,13 +18,12 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUp extends AppCompatActivity {
     ImageView logo;
-    TextView tv1,tv2;
-    TextInputLayout name,username,email,phonenumber,password,confirmPassword;
-    Button register,haveAccount;
+    TextView tv1, tv2;
+    TextInputLayout name, username, email, phonenumber, password, confirmPassword;
+    Button register, haveAccount;
 
     FirebaseDatabase rootNode;
     DatabaseReference reference;
-
 
 
     @Override
@@ -32,7 +31,7 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-         //Hooks to xml elements on the sign up activity
+        //Hooks to xml elements on the sign up activity
         haveAccount = findViewById(R.id.haveAccount);
         register = findViewById(R.id.register);
         name = findViewById(R.id.name);
@@ -45,17 +44,16 @@ public class SignUp extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            //Get Values entered by the user
-            if (!password.getEditText().getText().toString().equals(confirmPassword.getEditText().getText().toString())){
-                Toast.makeText(SignUp.this, "Passwords do not match!", Toast.LENGTH_SHORT).show();
-            }else if (!validateName() | !validateUserName()|!validateEmail() | !validatePhoneNumber()|!validatePassword()|!validateConfirmPassword()){
-               return;
-            }
-            else {
-                registerUser();
-                clear();
-                Toast.makeText(SignUp.this, "Registration was successful.", Toast.LENGTH_SHORT).show();
-            }
+                //Get Values entered by the user
+                if (!password.getEditText().getText().toString().equals(confirmPassword.getEditText().getText().toString())) {
+                    Toast.makeText(SignUp.this, "Passwords do not match!", Toast.LENGTH_SHORT).show();
+                } else if (!validateName() | !validateUserName() | !validateEmail() | !validatePhoneNumber() | !validatePassword() | !validateConfirmPassword()) {
+                    return;
+                } else {
+                    registerUser();
+                    clear();
+                    Toast.makeText(SignUp.this, "Registration was successful.", Toast.LENGTH_SHORT).show();
+                }
 
 
             }
@@ -64,7 +62,7 @@ public class SignUp extends AppCompatActivity {
         haveAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SignUp.this,Login.class);
+                Intent intent = new Intent(SignUp.this, Login.class);
                 startActivity(intent);
 
             }
@@ -72,34 +70,36 @@ public class SignUp extends AppCompatActivity {
 
     }
 
-    private Boolean validateName(){
+    private Boolean validateName() {
         String val = name.getEditText().getText().toString();
-        if (val.isEmpty()){
+        if (val.isEmpty()) {
             name.setError("Field cannot be empty.");
             return false;
-        }else{
+        } else {
             name.setError(null);
             name.setErrorEnabled(false);
             return true;
         }
     }
-    private Boolean validateUserName(){
+
+    private Boolean validateUserName() {
         String val = username.getEditText().getText().toString();
-        if (val.isEmpty()){
+        if (val.isEmpty()) {
             username.setError("Field cannot be empty.");
             return false;
-        }else if (val.length()>=15){
+        } else if (val.length() >= 15) {
             username.setError("Username is too long.");
             return false;
-        } else{
+        } else {
             username.setError(null);
             name.setErrorEnabled(false);
             return true;
         }
     }
-    private Boolean validateEmail(){
+
+    private Boolean validateEmail() {
         String val = email.getEditText().getText().toString();
-        if (val.isEmpty()){
+        if (val.isEmpty()) {
             email.setError("Field cannot be empty.");
             return false;
         } else {
@@ -108,41 +108,44 @@ public class SignUp extends AppCompatActivity {
             return true;
         }
     }
-    private Boolean validatePhoneNumber(){
+
+    private Boolean validatePhoneNumber() {
         String val = phonenumber.getEditText().getText().toString();
-        if (val.isEmpty()){
+        if (val.isEmpty()) {
             phonenumber.setError("Field cannot be empty.");
             return false;
-        }else{
+        } else {
             username.setError(null);
             phonenumber.setErrorEnabled(false);
             return true;
         }
     }
-    private Boolean validatePassword(){
+
+    private Boolean validatePassword() {
         String val = password.getEditText().getText().toString();
-        if (val.isEmpty()){
+        if (val.isEmpty()) {
             password.setError("Field cannot be empty.");
             return false;
-        }else{
+        } else {
             password.setError(null);
             password.setErrorEnabled(false);
             return true;
         }
     }
-    private Boolean validateConfirmPassword(){
+
+    private Boolean validateConfirmPassword() {
         String val = confirmPassword.getEditText().getText().toString();
-        if (val.isEmpty()){
+        if (val.isEmpty()) {
             confirmPassword.setError("Field cannot be empty.");
             return false;
-        }else{
+        } else {
             confirmPassword.setError(null);
             confirmPassword.setErrorEnabled(false);
             return true;
         }
     }
 
-    public void clear(){
+    public void clear() {
         name.getEditText().setText("");
         username.getEditText().setText("");
         email.getEditText().setText("");
@@ -151,7 +154,7 @@ public class SignUp extends AppCompatActivity {
         confirmPassword.getEditText().setText("");
     }
 
-    public void registerUser(){
+    public void registerUser() {
         rootNode = FirebaseDatabase.getInstance();
         reference = rootNode.getReference("users");
         String NAME = name.getEditText().getText().toString();
@@ -160,7 +163,7 @@ public class SignUp extends AppCompatActivity {
         String PHONENUMBER = phonenumber.getEditText().getText().toString();
         String PASSWORD = password.getEditText().getText().toString();
         String CONFIRMPASSWORD = confirmPassword.getEditText().getText().toString();
-        DBHelperClass dbHelperClass = new DBHelperClass(NAME,USERNAME,EMAIL,PHONENUMBER,PASSWORD,CONFIRMPASSWORD);
+        DBHelperClass dbHelperClass = new DBHelperClass(NAME, USERNAME, EMAIL, PHONENUMBER, PASSWORD, CONFIRMPASSWORD);
         reference.child(PHONENUMBER).setValue(dbHelperClass);
 
 

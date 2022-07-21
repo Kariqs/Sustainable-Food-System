@@ -1,15 +1,15 @@
 package com.example.ebite;
 
 public class Upload {
-    String  description,imageUri;
+    String description, imageUri;
 
     public Upload() {
     }
 
     public Upload(String description, String imageUri) {
 
-        if (description.trim().equals("")){
-          description = "No description";
+        if (description.trim().equals("")) {
+            description = "No description";
         }
 
         this.description = description;

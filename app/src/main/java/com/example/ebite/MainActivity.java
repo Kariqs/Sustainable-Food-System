@@ -16,20 +16,20 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static int  SPLASH_TIME = 3000;
+    private static int SPLASH_TIME = 3000;
 
-    Animation topAnim,bottomAnim;
+    Animation topAnim, bottomAnim;
     ImageView image;
-    TextView tv1,tv2,tv3;
+    TextView tv1, tv2, tv3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        topAnim = AnimationUtils.loadAnimation(this,R.anim.top_animation);
-        bottomAnim = AnimationUtils.loadAnimation(this,R.anim.bottom_animation);
+        topAnim = AnimationUtils.loadAnimation(this, R.anim.top_animation);
+        bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
 
         image = findViewById(R.id.imageView);
         tv1 = findViewById(R.id.textView);
@@ -46,14 +46,14 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
 
                 Intent intent = new Intent(MainActivity.this, Login.class);
-                Pair [] pairs = new Pair[2];
-                pairs[0] = new Pair<View,String>(image,"logo_image");
-                pairs[1] = new Pair<View,String>(tv1,"logo_text");
+                Pair[] pairs = new Pair[2];
+                pairs[0] = new Pair<View, String>(image, "logo_image");
+                pairs[1] = new Pair<View, String>(tv1, "logo_text");
 
-                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this,pairs);
-                startActivity(intent,options.toBundle());
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, pairs);
+                startActivity(intent, options.toBundle());
                 finish();
             }
-        },SPLASH_TIME);
+        }, SPLASH_TIME);
     }
 }
