@@ -18,12 +18,12 @@
             android:fontFamily="@font/ebike_font2"
             android:text="Description"
             android:textColor="@color/black"
-            android:textSize="50dp" />
+            android:textSize="15dp" />
 
         <ImageView
             android:id="@+id/show_uploads"
             android:layout_width="match_parent"
-            android:layout_height="800dp" />
+            android:layout_height="300dp" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
