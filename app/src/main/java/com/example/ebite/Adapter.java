@@ -6,10 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -35,11 +37,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ImageViewHolder> {
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
         Upload upload = list.get(position);
         holder.Description.setText(upload.getDescription());
-        Picasso.with(context)
+        Toast.makeText(context, upload.getImageUri(), Toast.LENGTH_SHORT).show();
+        Glide.with(context)
                 .load(upload.getImageUri())
                 .placeholder(R.drawable.ebiteplaceholder)
-                .fit()
-                .centerInside()
+                .centerCrop()
                 .into(holder.ShowImage);
     }
 
