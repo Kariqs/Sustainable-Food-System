@@ -68,7 +68,7 @@ public class Post extends AppCompatActivity {
                     Toast.makeText(Post.this, "Upload in progress.", Toast.LENGTH_SHORT).show();
                 } else {
                     uploadFile();
-                    goBack();
+                    //goBack();
                    // finish();
                 }
             }

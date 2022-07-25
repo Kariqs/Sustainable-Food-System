@@ -102,6 +102,7 @@ public class Login extends AppCompatActivity {
 
                         Intent intent = new Intent(getApplicationContext(), Dashboard.class);
                         startActivity(intent);
+                        finish();
                     } else {
                         password.setError("Wrong password.");
                         password.requestFocus();
