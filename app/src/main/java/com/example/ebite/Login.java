@@ -43,7 +43,7 @@ public class Login extends AppCompatActivity {
                     return;
                 } else {
                     isUser();
-                    clear();
+                    finish();
                 }
             }
         });
@@ -119,8 +119,5 @@ public class Login extends AppCompatActivity {
         });
     }
 
-    public void clear() {
-        Phone.getEditText().setText("");
-        password.getEditText().setText("");
-    }
+
 }

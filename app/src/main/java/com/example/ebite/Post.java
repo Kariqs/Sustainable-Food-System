@@ -68,7 +68,8 @@ public class Post extends AppCompatActivity {
                     Toast.makeText(Post.this, "Upload in progress.", Toast.LENGTH_SHORT).show();
                 } else {
                     uploadFile();
-                    // clear();
+                    goBack();
+                    finish();
                 }
             }
         });
@@ -136,8 +137,8 @@ public class Post extends AppCompatActivity {
 
     }
 
-    private void clear() {
-        Description.getEditText().setText("");
-        showImage.setImageResource(android.R.color.transparent);
-    }
+   private void goBack(){
+        Intent intent = new Intent(Post.this,Dashboard.class);
+        startActivity(intent);
+   }
 }
