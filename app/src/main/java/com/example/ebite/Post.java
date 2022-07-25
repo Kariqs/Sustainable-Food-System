@@ -69,7 +69,7 @@ public class Post extends AppCompatActivity {
                 } else {
                     uploadFile();
                     goBack();
-                    finish();
+                   // finish();
                 }
             }
         });

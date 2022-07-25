@@ -13,22 +13,28 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Dashboard extends AppCompatActivity {
+public class Dashboard extends AppCompatActivity implements Adapter.OnItemClickListener {
 
     Button Post;
     ProgressBar progressBar;
     RecyclerView recyclerView;
     Adapter adapter;
 
+    ValueEventListener valueEventListener;
+    FirebaseStorage firebaseStorage;
     DatabaseReference databaseReference;
     List<Upload> list;
 
@@ -44,18 +50,26 @@ public class Dashboard extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         list = new ArrayList<>();
+
+        adapter = new Adapter(Dashboard.this, list);
+        recyclerView.setAdapter(adapter);
+        adapter.setOnItemClickListener(Dashboard.this);
+
+        firebaseStorage = FirebaseStorage.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("uploads");
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        valueEventListener = databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                list.clear();
+
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-                    Upload upload = postSnapshot.getValue(Upload.class);
+                    Upload upload  = postSnapshot.getValue(Upload.class);
+                    upload.setKey(postSnapshot.getKey());
                     list.add(upload);
                 }
 
-                adapter = new Adapter(Dashboard.this, list);
-                recyclerView.setAdapter(adapter);
-
+                adapter.notifyDataSetChanged();
                 progressBar.setVisibility(View.INVISIBLE);
 
             }
@@ -76,5 +90,41 @@ public class Dashboard extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Toast.makeText(this, "Normal click at position:"+ position, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onWhateverClick(int position) {
+        Toast.makeText(this, "Whatever click at position:"+ position, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onDeleteClick(int position) {
+        Upload selectedItem = list.get(position);
+        String selectedKey = selectedItem.getKey();
+
+        StorageReference imageReference = firebaseStorage.getReferenceFromUrl(selectedItem.getImageUri());
+        imageReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                databaseReference.child(selectedKey).removeValue();
+                Toast.makeText(Dashboard.this, "Post deleted successfully.", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(Dashboard.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        databaseReference.removeEventListener(valueEventListener);
     }
 }

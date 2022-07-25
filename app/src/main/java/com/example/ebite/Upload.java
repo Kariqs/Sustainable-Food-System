@@ -1,7 +1,9 @@
 package com.example.ebite;
 
+import com.google.firebase.database.Exclude;
+
 public class Upload {
-    String description, imageUri;
+    String description, imageUri, key;
 
     public Upload() {
     }
@@ -31,4 +33,10 @@ public class Upload {
     public void setImageUri(String imageUri) {
         this.imageUri = imageUri;
     }
+
+    @Exclude
+    public String getKey() {return key;}
+
+    @Exclude
+    public void setKey(String key) {this.key = key;}
 }
