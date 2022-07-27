@@ -21,8 +21,8 @@ import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ImageViewHolder> {
 
-    private Context context;
-    private List<Upload> list;
+    private final Context context;
+    private final List<Upload> list;
     private OnItemClickListener mListener;
 
     public Adapter(Context context, List<Upload> list) {
